@@ -3,7 +3,17 @@ package com.merrycodes.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * md5 加密工具类
+ *
+ * @author MerryCodes
+ * @date 2020/3/23 10:24
+ */
+
 public class MD5Util {
+
+    private static final String SALT = "BoXueGu";
+
     private static final char[] HEX_CHARS =
             {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
@@ -37,7 +47,7 @@ public class MD5Util {
     }
 
     /**
-     * Spring 中的MD5加密
+     * Spring 中的MD5加密 （加入了盐值）
      *
      * @param value 加密字段
      * @return MD5字符串
@@ -45,6 +55,8 @@ public class MD5Util {
     public static String springMd5(String value) {
         MessageDigest digest;
         try {
+            // 可以加入盐值
+            value += SALT;
             digest = MessageDigest.getInstance("MD5");
             byte[] bytes = digest.digest(value.getBytes());
             return new String(encodeHex(bytes));

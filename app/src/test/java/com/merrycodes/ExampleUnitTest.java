@@ -19,11 +19,8 @@ public class ExampleUnitTest {
 
     @Test
     public void md5(){
-        String md5Password = MD5Util.md5("123");
-        System.out.println(md5Password);
-        assertNotEquals(null, md5Password);
         String springMd5Password = MD5Util.springMd5("123");
         System.out.println(springMd5Password);
-        assertNotEquals(null, springMd5Password);
+        assertEquals("77005938398c952c95f8de72a412a4d3", springMd5Password);
     }
 }
