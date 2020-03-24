@@ -4,4 +4,6 @@
     <string name="password">请输入密码</string>
     <string name="register">注册</string>
     <string name="description">头像</string>
+    <string name="find_password">找回密码</string>
+    <string name="to_register">立即注册</string>
 </resources>

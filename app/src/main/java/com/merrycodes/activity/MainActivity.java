@@ -1,10 +1,11 @@
-package com.merrycodes;
+package com.merrycodes.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.merrycodes.R;
 import com.merrycodes.activity.RegisterActivity;
 
 /**

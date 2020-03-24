@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.merrycodes.MainActivity;
 import com.merrycodes.R;
 import com.merrycodes.R2;
 
