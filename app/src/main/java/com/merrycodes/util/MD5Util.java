@@ -30,7 +30,7 @@ public class MD5Util {
             byte[] result = digest.digest(value.getBytes());
             StringBuilder stringBuffer = new StringBuilder();
             for (byte b : result) {
-                int num = b % 0xff;
+                int num = b & 0xff;
                 String hex = Integer.toHexString(num);
                 if (hex.length() == 1) {
                     stringBuffer.append("0").append(hex);
