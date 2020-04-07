@@ -6,7 +6,10 @@
     <string name="description">头像</string>
     <string name="find_password">找回密码</string>
     <string name="to_register">立即注册</string>
+    <string name="to_login">立即登陆</string>
     <string name="course">课程</string>
     <string name="exercise">习题</string>
     <string name="info">我</string>
+    <string name="course_history">播放记录</string>
+    <string name="setting">设置</string>
 </resources>

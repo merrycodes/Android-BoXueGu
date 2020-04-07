@@ -1,7 +1,9 @@
 package com.merrycodes.activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
+import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 
 import butterknife.BindView;
@@ -69,12 +72,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R2.id.text_info)
     TextView tvInfo;
 
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
         init();
+        setListener();
+        setInitStatus();
+    }
+
+    private void setInitStatus() {
+        clearBottomImageState();
+        selectDisplayView(0);
+        createView(0);
     }
 
     /**
@@ -195,5 +209,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < mainBody.getChildCount(); i++) {
             mainBody.getChildAt(i).setVisibility(View.GONE);
         }
+    }
+
+    protected Long exitTime;
+
+    /**
+     * 点击返回按钮处理事件
+     *
+     * @param keyCode 点击的按钮
+     * @param event   点击事件
+     * @return boolean
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - exitTime > 2000) {
+                CommonUtil.showToast(this, "再按一次退出博学谷");
+                exitTime = System.currentTimeMillis();
+            } else {
+                MainActivity.this.finish();
+                if (readLoginStatus()) {
+                    clearLoginStatus();
+                }
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 清理登陆状态
+     */
+    private void clearLoginStatus() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLogin", false);
+        editor.putString("loginUserName", "");
+        editor.apply();
+    }
+
+    /**
+     * 读取登陆状态
+     *
+     * @return 登陆状态
+     */
+    private Boolean readLoginStatus() {
+        return sharedPreferences.getBoolean("isLogin", false);
     }
 }
