@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             CommonUtil.showToast(this, "登陆成功");
             saveLoginStatus(username);
             Intent intent = new Intent();
-            intent.putExtra("isLogin", true);
+            intent.putExtra(CommonConstant.IS_LOGIN, true);
             setResult(RESULT_OK, intent);
             LoginActivity.this.finish();
         }
@@ -107,8 +107,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void saveLoginStatus(String username) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLogin", true);
-        editor.putString("loginUserName", username);
+        editor.putBoolean(CommonConstant.IS_LOGIN, true);
+        editor.putString(CommonConstant.LOGIN_USER_NAME, username);
         editor.apply();
     }
 

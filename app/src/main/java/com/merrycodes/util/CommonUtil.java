@@ -38,6 +38,6 @@ public class CommonUtil {
 
     public static String getUserName(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(CommonConstant.LOGIN_INFO, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("loginUserName", "");
+        return sharedPreferences.getString(CommonConstant.LOGIN_USER_NAME, "");
     }
 }

@@ -1,5 +1,6 @@
 package com.merrycodes.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,12 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
 import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
+import com.merrycodes.view.InfoView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R2.id.text_info)
     TextView tvInfo;
+
+    private InfoView infoView;
 
     private SharedPreferences sharedPreferences;
 
@@ -199,6 +204,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 2:
                 CommonUtil.showToast(this, "我的界面");
+                if (infoView == null) {
+                    infoView = new InfoView(this);
+                    mainBody.addView(infoView.getView());
+                } else {
+                    infoView.getView();
+                }
+                infoView.showView();
                 break;
             default:
                 break;
@@ -243,8 +255,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void clearLoginStatus() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLogin", false);
-        editor.putString("loginUserName", "");
+        editor.putBoolean(CommonConstant.IS_LOGIN, false);
+        editor.putString(CommonConstant.LOGIN_USER_NAME, "");
         editor.apply();
     }
 
@@ -254,6 +266,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @return 登陆状态
      */
     private Boolean readLoginStatus() {
-        return sharedPreferences.getBoolean("isLogin", false);
+        return sharedPreferences.getBoolean(CommonConstant.IS_LOGIN, false);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            boolean isLogin = data.getBooleanExtra(CommonConstant.IS_LOGIN, false);
+            if (isLogin) {
+                clearBottomImageState();
+                selectDisplayView(2);
+            }
+            if (infoView != null) {
+                infoView.setLoginParams(isLogin);
+            }
+        }
+
     }
 }

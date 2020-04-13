@@ -6,7 +6,11 @@ package com.merrycodes.constant;
  * @author MerryCodes
  * @date 2020/3/24 15:44
  */
-public class CommonConstant {
+public interface CommonConstant {
     // 登陆信息
-    public static final String LOGIN_INFO = "loginInfo";
+    String LOGIN_INFO = "loginInfo";
+
+    String IS_LOGIN = "isLogin";
+
+    String LOGIN_USER_NAME = "loginUserName";
 }

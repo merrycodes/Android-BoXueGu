@@ -41,6 +41,7 @@
         android:background="#E3E3E3" />
 
     <RelativeLayout
+        android:id="@+id/rl_history"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#F7F8F8"
@@ -79,6 +80,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_setting"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#F7F8F8"
