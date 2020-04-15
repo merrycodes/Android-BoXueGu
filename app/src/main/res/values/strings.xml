@@ -16,4 +16,8 @@
     <string name="setting">设置</string>
     <string name="modify_password">修改密码</string>
     <string name="security_setting">设置密保</string>
+    <string name="old_password">请输入原始密码</string>
+    <string name="new_Password">请输入新密码</string>
+    <string name="re_new_password">请再次输入新密码</string>
+    <string name="save">保存</string>
 </resources>

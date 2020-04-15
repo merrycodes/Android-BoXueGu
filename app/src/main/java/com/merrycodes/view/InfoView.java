@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.merrycodes.R;
 import com.merrycodes.R2;
 import com.merrycodes.activity.LoginActivity;
+import com.merrycodes.activity.SettingActivity;
 import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 
@@ -90,7 +91,9 @@ public class InfoView {
 
         rlSetting.setOnClickListener(v -> {
             if (readLoginStatus()) {
-                CommonUtil.showToast(activity, "跳转到登陆状态界面");
+                CommonUtil.showToast(activity, "跳转到设置界面");
+                Intent intent = new Intent(activity, SettingActivity.class);
+                activity.startActivityForResult(intent, 1);
             } else {
                 CommonUtil.showToast(activity, "您还未登陆，请先登陆");
             }
