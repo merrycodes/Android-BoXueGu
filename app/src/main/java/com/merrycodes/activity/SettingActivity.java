@@ -1,10 +1,10 @@
 package com.merrycodes.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +17,6 @@ import com.merrycodes.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -41,10 +40,15 @@ public class SettingActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
 
+    @SuppressLint("StaticFieldLeak")
+    protected static SettingActivity instance = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        instance = this;
         ButterKnife.bind(this);
         sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
         init();
@@ -55,11 +59,14 @@ public class SettingActivity extends AppCompatActivity {
         titleBar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tvBack.setOnClickListener(v -> SettingActivity.this.finish());
 
-        rlModifyPassword.setOnClickListener(v -> CommonUtil.showToast(this, "跳转到修改密码界面"));
+        rlModifyPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingActivity.this, ModifyPasswordActivity.class);
+            startActivity(intent);
+        });
 
         rlSecuritySetting.setOnClickListener(v -> CommonUtil.showToast(this, "跳转到密保界面"));
 
-        rlLoginOut.setOnClickListener(v ->{
+        rlLoginOut.setOnClickListener(v -> {
             CommonUtil.showToast(this, "退出登陆成功");
             clearLoginStatus();
             Intent intent = new Intent();
