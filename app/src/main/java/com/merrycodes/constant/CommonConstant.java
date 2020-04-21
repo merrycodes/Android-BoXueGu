@@ -13,4 +13,10 @@ public interface CommonConstant {
     String IS_LOGIN = "isLogin";
 
     String LOGIN_USER_NAME = "loginUserName";
+
+    String FROM = "from";
+
+    String SECURITY = "security";
+
+    String PREFIX_SECURITY = "_security";
 }

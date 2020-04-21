@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -20,6 +21,7 @@ import com.merrycodes.util.MD5Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,8 +73,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         });
 
-        tvFindPassword.setOnClickListener(v -> CommonUtil.showToast(this, "立即注册"));
-
+        tvFindPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, FindPasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
     /**

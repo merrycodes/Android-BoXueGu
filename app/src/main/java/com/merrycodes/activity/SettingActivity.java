@@ -64,10 +64,13 @@ public class SettingActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        rlSecuritySetting.setOnClickListener(v -> CommonUtil.showToast(this, "跳转到密保界面"));
+        rlSecuritySetting.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingActivity.this, FindPasswordActivity.class);
+            intent.putExtra("from", "security");
+            startActivity(intent);
+        });
 
         rlLoginOut.setOnClickListener(v -> {
-            CommonUtil.showToast(this, "退出登陆成功");
             clearLoginStatus();
             Intent intent = new Intent();
             intent.putExtra(CommonConstant.IS_LOGIN, false);
