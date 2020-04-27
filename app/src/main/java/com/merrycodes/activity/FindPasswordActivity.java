@@ -2,6 +2,7 @@ package com.merrycodes.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import com.merrycodes.R;
 import com.merrycodes.R2;
 import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
+import com.merrycodes.util.MD5Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,6 +59,7 @@ public class FindPasswordActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void init() {
         if (TextUtils.equals(CommonConstant.SECURITY, from)) {
             tvMainTitle.setText("设置密保");
@@ -68,20 +71,51 @@ public class FindPasswordActivity extends AppCompatActivity {
         tvBack.setOnClickListener(v -> FindPasswordActivity.this.finish());
 
         btnValidate.setOnClickListener(v -> {
+            String validateName = CommonUtil.getEditInput(etValidateName);
             // 保存密保
             if (TextUtils.equals(CommonConstant.SECURITY, from)) {
-                String validateName = CommonUtil.getEditInput(etValidateName);
                 if (TextUtils.isEmpty(validateName)) {
                     CommonUtil.showToast(this, "请输入要验证的姓名");
                 } else {
                     CommonUtil.showToast(this, "密保设置成功");
                     saveSecurity(validateName);
+                    FindPasswordActivity.this.finish();
                 }
                 // 找回密码
             } else {
                 CommonUtil.showToast(this, "找回密码");
+                String username = CommonUtil.getEditInput(etUsername);
+                String security = readSecurity(username);
+                if (TextUtils.isEmpty(username)) {
+                    CommonUtil.showToast(this, "请输入您的用户名");
+                } else if (!isExitUserName(username)) {
+                    CommonUtil.showToast(this, "您输入的用户名不存在");
+                } else if (TextUtils.isEmpty(validateName)) {
+                    CommonUtil.showToast(this, "请输入要验证的姓名");
+                } else if (!TextUtils.equals(security, validateName)) {
+                    CommonUtil.showToast(this, "输入密保不正确");
+                } else {
+                    tvResetPassword.setVisibility(View.VISIBLE);
+                    tvResetPassword.setText("初始密码 : 123456");
+                    resetPassword(username);
+                }
             }
         });
+    }
+
+    private void resetPassword(String username) {
+        String md5Password = MD5Util.springMd5("123456");
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(username, md5Password);
+        editor.apply();
+    }
+
+    private boolean isExitUserName(String username) {
+        return sharedPreferences.getString(username, "") != null;
+    }
+
+    private String readSecurity(String username) {
+        return sharedPreferences.getString(username + CommonConstant.PREFIX_SECURITY, "");
     }
 
     private void saveSecurity(String validateName) {

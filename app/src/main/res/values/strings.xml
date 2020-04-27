@@ -25,4 +25,12 @@
     <string name="what_is_your_name">您的姓名是？</string>
     <string name="input_name">请输入要验证的姓名</string>
     <string name="validate">验证</string>
+    <string name="info_avatar">头像</string>
+    <string name="info_username">用户名</string>
+    <string name="info_default_username">account</string>
+    <string name="info_default_nickname">昵称</string>
+    <string name="info_sex">性别</string>
+    <string name="info_default_sex">女</string>
+    <string name="info_signature">签明</string>
+    <string name="info_default_signature">大家好</string>
 </resources>

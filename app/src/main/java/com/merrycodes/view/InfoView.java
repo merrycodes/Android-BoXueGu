@@ -16,6 +16,7 @@ import com.merrycodes.R;
 import com.merrycodes.R2;
 import com.merrycodes.activity.LoginActivity;
 import com.merrycodes.activity.SettingActivity;
+import com.merrycodes.activity.UserInfoActivity;
 import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 
@@ -68,11 +69,13 @@ public class InfoView {
         ButterKnife.bind(this, view);
         view.setVisibility(View.VISIBLE);
         sharedPreferences = activity.getSharedPreferences(CommonConstant.LOGIN_INFO, Context.MODE_PRIVATE);
+        setLoginParams(readLoginStatus());
 
         linearLayout.setOnClickListener(v -> {
             if (readLoginStatus()) {
                 // 跳转到个人资料界面
-                CommonUtil.showToast(activity, "跳转到个人资料界面");
+                Intent intent = new Intent(activity, UserInfoActivity.class);
+                activity.startActivity(intent);
             } else {
                 // 跳转到登陆界面
                 Intent intent = new Intent(activity, LoginActivity.class);
