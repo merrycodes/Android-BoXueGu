@@ -14,12 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 
 /**
  * @author MerryCodes
@@ -61,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void init() {
         tvMainTitle.setText("注册");
         titleBar.setBackgroundColor(Color.TRANSPARENT);
-        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LOGIN_INFO, MODE_PRIVATE);
 
         // 处理点击放回按钮
         tvBack.setOnClickListener(v -> {

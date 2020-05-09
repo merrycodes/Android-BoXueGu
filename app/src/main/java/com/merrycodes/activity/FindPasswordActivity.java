@@ -1,7 +1,5 @@
 package com.merrycodes.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,14 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.FROM;
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
+import static com.merrycodes.constant.CommonConstant.PREFIX_SECURITY;
+import static com.merrycodes.constant.CommonConstant.SECURITY;
 
 public class FindPasswordActivity extends AppCompatActivity {
 
@@ -53,15 +57,15 @@ public class FindPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_password);
         ButterKnife.bind(this);
-        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
-        from = getIntent().getStringExtra(CommonConstant.FROM);
+        sharedPreferences = getSharedPreferences(LOGIN_INFO, MODE_PRIVATE);
+        from = getIntent().getStringExtra(FROM);
         init();
 
     }
 
     @SuppressLint("SetTextI18n")
     private void init() {
-        if (TextUtils.equals(CommonConstant.SECURITY, from)) {
+        if (TextUtils.equals(SECURITY, from)) {
             tvMainTitle.setText("设置密保");
         } else {
             tvMainTitle.setText("找回密码");
@@ -71,9 +75,9 @@ public class FindPasswordActivity extends AppCompatActivity {
         tvBack.setOnClickListener(v -> FindPasswordActivity.this.finish());
 
         btnValidate.setOnClickListener(v -> {
-            String validateName = CommonUtil.getEditInput(etValidateName);
+            String validateName = CommonUtil.getTextValue(etValidateName);
             // 保存密保
-            if (TextUtils.equals(CommonConstant.SECURITY, from)) {
+            if (TextUtils.equals(SECURITY, from)) {
                 if (TextUtils.isEmpty(validateName)) {
                     CommonUtil.showToast(this, "请输入要验证的姓名");
                 } else {
@@ -84,7 +88,7 @@ public class FindPasswordActivity extends AppCompatActivity {
                 // 找回密码
             } else {
                 CommonUtil.showToast(this, "找回密码");
-                String username = CommonUtil.getEditInput(etUsername);
+                String username = CommonUtil.getTextValue(etUsername);
                 String security = readSecurity(username);
                 if (TextUtils.isEmpty(username)) {
                     CommonUtil.showToast(this, "请输入您的用户名");
@@ -115,12 +119,12 @@ public class FindPasswordActivity extends AppCompatActivity {
     }
 
     private String readSecurity(String username) {
-        return sharedPreferences.getString(username + CommonConstant.PREFIX_SECURITY, "");
+        return sharedPreferences.getString(username + PREFIX_SECURITY, "");
     }
 
     private void saveSecurity(String validateName) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(CommonUtil.getUserName(this) + CommonConstant.PREFIX_SECURITY, validateName);
+        editor.putString(CommonUtil.getUserName(this) + PREFIX_SECURITY, validateName);
         editor.apply();
     }
 }

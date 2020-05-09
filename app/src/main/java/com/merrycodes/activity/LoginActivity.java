@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -15,13 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static com.merrycodes.constant.CommonConstant.IS_LOGIN;
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
+import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LOGIN_INFO, MODE_PRIVATE);
         init();
     }
 
@@ -83,8 +84,8 @@ public class LoginActivity extends AppCompatActivity {
      * 登陆的各种验证
      */
     private void checkLogin() {
-        String username = CommonUtil.getEditInput(etUserName);
-        String password = CommonUtil.getEditInput(etPassWord);
+        String username = CommonUtil.getTextValue(etUserName);
+        String password = CommonUtil.getTextValue(etPassWord);
         String md5Password = MD5Util.springMd5(password);
         String spPassword = getPassword(username);
 
@@ -98,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             CommonUtil.showToast(this, "登陆成功");
             saveLoginStatus(username);
             Intent intent = new Intent();
-            intent.putExtra(CommonConstant.IS_LOGIN, true);
+            intent.putExtra(IS_LOGIN, true);
             setResult(RESULT_OK, intent);
             LoginActivity.this.finish();
         }
@@ -111,8 +112,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void saveLoginStatus(String username) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(CommonConstant.IS_LOGIN, true);
-        editor.putString(CommonConstant.LOGIN_USER_NAME, username);
+        editor.putBoolean(IS_LOGIN, true);
+        editor.putString(LOGIN_USER_NAME, username);
         editor.apply();
     }
 

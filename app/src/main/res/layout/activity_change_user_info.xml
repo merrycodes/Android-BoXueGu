@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    tools:context=".activity.ChangeUserInfoActivity">
+
+    <include layout="@layout/main_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:autofillHints=""
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:singleLine="true"
+            android:textColor="#737373"
+            android:textSize="14sp"
+            tools:ignore="LabelFor,RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/im_delete"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="-40dp"
+            android:contentDescription="@string/description"
+            android:src="@drawable/info_delete" />
+    </LinearLayout>
+
+</LinearLayout>

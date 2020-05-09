@@ -17,12 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.view.InfoView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.IS_LOGIN;
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
+import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
 /**
  * @author MerryCodes
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LOGIN_INFO, MODE_PRIVATE);
         init();
         setListener();
         setInitStatus();
@@ -255,8 +258,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void clearLoginStatus() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(CommonConstant.IS_LOGIN, false);
-        editor.putString(CommonConstant.LOGIN_USER_NAME, "");
+        editor.putBoolean(IS_LOGIN, false);
+        editor.putString(LOGIN_USER_NAME, "");
         editor.apply();
     }
 
@@ -266,14 +269,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @return 登陆状态
      */
     private Boolean readLoginStatus() {
-        return sharedPreferences.getBoolean(CommonConstant.IS_LOGIN, false);
+        return sharedPreferences.getBoolean(IS_LOGIN, false);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
-            boolean isLogin = data.getBooleanExtra(CommonConstant.IS_LOGIN, false);
+            boolean isLogin = data.getBooleanExtra(IS_LOGIN, false);
             if (isLogin) {
                 clearBottomImageState();
                 selectDisplayView(2);

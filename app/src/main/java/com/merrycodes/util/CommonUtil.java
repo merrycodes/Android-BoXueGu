@@ -2,10 +2,11 @@ package com.merrycodes.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.merrycodes.constant.CommonConstant;
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
+import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
 /**
  * 通用工具
@@ -29,15 +30,15 @@ public class CommonUtil {
     /**
      * 获取编辑框输入内容
      *
-     * @param editText EditText
-     * @return 编辑框输入内容
+     * @param view EditText/TextView
+     * @return 获取文本框内容
      */
-    public static String getEditInput(EditText editText) {
-        return editText.getText().toString().trim();
+    public static String getTextValue(TextView view) {
+        return view.getText().toString().trim();
     }
 
     public static String getUserName(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(CommonConstant.LOGIN_INFO, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(CommonConstant.LOGIN_USER_NAME, "");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(LOGIN_INFO, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(LOGIN_USER_NAME, "");
     }
 }

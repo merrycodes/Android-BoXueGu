@@ -1,24 +1,24 @@
 package com.merrycodes.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 
 public class ModifyPasswordActivity extends AppCompatActivity {
 
@@ -50,7 +50,7 @@ public class ModifyPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modify_password);
         ButterKnife.bind(this);
         userName = CommonUtil.getUserName(this);
-        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LOGIN_INFO, MODE_PRIVATE);
         init();
     }
 
@@ -59,9 +59,9 @@ public class ModifyPasswordActivity extends AppCompatActivity {
         tvBack.setOnClickListener(v -> ModifyPasswordActivity.this.finish());
 
         btnSave.setOnClickListener(v -> {
-            String originalPassword = CommonUtil.getEditInput(etOriginalPassword);
-            String newPassword = CommonUtil.getEditInput(etReNewPassword);
-            String reNewPassword = CommonUtil.getEditInput(etReNewPassword);
+            String originalPassword = CommonUtil.getTextValue(etOriginalPassword);
+            String newPassword = CommonUtil.getTextValue(etReNewPassword);
+            String reNewPassword = CommonUtil.getTextValue(etReNewPassword);
             if (TextUtils.isEmpty(originalPassword)) {
                 CommonUtil.showToast(this, "请输入原密码");
             } else if (!TextUtils.equals(MD5Util.springMd5(originalPassword), readPassword())) {

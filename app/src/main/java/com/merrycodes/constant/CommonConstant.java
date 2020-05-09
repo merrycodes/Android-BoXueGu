@@ -24,4 +24,26 @@ public interface CommonConstant {
 
     // 密保 prefix
     String PREFIX_SECURITY = "_security";
+
+    // 男
+    String MALE = "男";
+
+    // 女
+    String FEMALE = "女";
+
+    int CHANGE_NICKNAME = 1;
+
+    int CHANGE_SIGNATURE= 2;
+
+    String CONTENT = "content";
+
+    String TITLE = "title";
+
+    String FLAG = "flag";
+
+    String NICKNAME = "nickname";
+
+    String SIGNATURE = "signature";
+
+    String SEX= "sex";
 }

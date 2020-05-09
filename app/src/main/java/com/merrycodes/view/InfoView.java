@@ -17,11 +17,14 @@ import com.merrycodes.R2;
 import com.merrycodes.activity.LoginActivity;
 import com.merrycodes.activity.SettingActivity;
 import com.merrycodes.activity.UserInfoActivity;
-import com.merrycodes.constant.CommonConstant;
 import com.merrycodes.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.IS_LOGIN;
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
+
 
 /**
  * 个人页面
@@ -68,7 +71,7 @@ public class InfoView {
         view = layoutInflater.inflate(R.layout.main_view_info, null);
         ButterKnife.bind(this, view);
         view.setVisibility(View.VISIBLE);
-        sharedPreferences = activity.getSharedPreferences(CommonConstant.LOGIN_INFO, Context.MODE_PRIVATE);
+        sharedPreferences = activity.getSharedPreferences(LOGIN_INFO, Context.MODE_PRIVATE);
         setLoginParams(readLoginStatus());
 
         linearLayout.setOnClickListener(v -> {
@@ -132,6 +135,6 @@ public class InfoView {
      * @return 用户是否登陆
      */
     private Boolean readLoginStatus() {
-        return sharedPreferences.getBoolean(CommonConstant.IS_LOGIN, false);
+        return sharedPreferences.getBoolean(IS_LOGIN, false);
     }
 }

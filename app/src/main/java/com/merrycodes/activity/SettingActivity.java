@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.constant.CommonConstant;
-import com.merrycodes.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.IS_LOGIN;
+import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
+import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -50,7 +52,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         instance = this;
         ButterKnife.bind(this);
-        sharedPreferences = getSharedPreferences(CommonConstant.LOGIN_INFO, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LOGIN_INFO, MODE_PRIVATE);
         init();
     }
 
@@ -73,7 +75,7 @@ public class SettingActivity extends AppCompatActivity {
         rlLoginOut.setOnClickListener(v -> {
             clearLoginStatus();
             Intent intent = new Intent();
-            intent.putExtra(CommonConstant.IS_LOGIN, false);
+            intent.putExtra(IS_LOGIN, false);
             setResult(RESULT_OK, intent);
             SettingActivity.this.finish();
         });
@@ -82,8 +84,8 @@ public class SettingActivity extends AppCompatActivity {
 
     private void clearLoginStatus() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(CommonConstant.IS_LOGIN, false);
-        editor.putString(CommonConstant.LOGIN_USER_NAME, "");
+        editor.putBoolean(IS_LOGIN, false);
+        editor.putString(LOGIN_USER_NAME, "");
         editor.apply();
     }
 

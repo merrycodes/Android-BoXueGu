@@ -2,12 +2,14 @@ package com.merrycodes.bean;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 /**
  * @author MerryCodes
  * @date 2020/4/27 11:31
  */
 @Data
+@Builder
 public class UserBean {
 
     /**
@@ -30,4 +32,7 @@ public class UserBean {
      */
     private String signature;
 
+    @Tolerate
+    public UserBean() {
+    }
 }
