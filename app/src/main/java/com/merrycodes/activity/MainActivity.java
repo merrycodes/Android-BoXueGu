@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.merrycodes.R;
 import com.merrycodes.R2;
 import com.merrycodes.util.CommonUtil;
+import com.merrycodes.view.ExercisesView;
 import com.merrycodes.view.InfoView;
 
 import butterknife.BindView;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private InfoView infoView;
 
     private SharedPreferences sharedPreferences;
+    private ExercisesView exercisesView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,10 +205,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 CommonUtil.showToast(this, "课程界面");
                 break;
             case 1:
-                CommonUtil.showToast(this, "习题界面");
+                if (exercisesView == null) {
+                    exercisesView = new ExercisesView(this);
+                    mainBody.addView(exercisesView.getView());
+                }else {
+                    exercisesView.getView();
+                }
+                exercisesView.showView();
                 break;
             case 2:
-                CommonUtil.showToast(this, "我的界面");
                 if (infoView == null) {
                     infoView = new InfoView(this);
                     mainBody.addView(infoView.getView());
