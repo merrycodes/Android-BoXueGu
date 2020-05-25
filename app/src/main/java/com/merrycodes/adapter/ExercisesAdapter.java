@@ -2,6 +2,7 @@ package com.merrycodes.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.merrycodes.R;
 import com.merrycodes.R2;
+import com.merrycodes.activity.ExerciseDetailActivity;
 import com.merrycodes.bean.ExercisesBean;
 import com.merrycodes.util.CommonUtil;
 
@@ -82,7 +84,10 @@ public class ExercisesAdapter extends BaseAdapter {
             if (exercisesBean == null) {
                 return;
             }
-            CommonUtil.showToast(context, "跳转到习题详情界面");
+            Intent intent = new Intent(context, ExerciseDetailActivity.class);
+            intent.putExtra("id", exercisesBean.getId());
+            intent.putExtra("title", exercisesBean.getId());
+            context.startActivity(intent);
         });
 
         return convertView;

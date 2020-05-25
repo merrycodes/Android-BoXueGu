@@ -62,6 +62,13 @@ public class ExercisesDetailAdapter extends BaseAdapter {
 
     private List<ExercisesBean> exercisesBeans;
 
+    private OnSelecteListener onSelecteListener;
+
+    public ExercisesDetailAdapter(Context context, List<String> selectePosition) {
+        this.context = context;
+        this.selectePosition = selectePosition;
+    }
+
     @Override
     public int getCount() {
         return exercisesBeans == null ? 0 : exercisesBeans.size();
@@ -77,7 +84,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         return position;
     }
 
-    @SuppressLint("ViewHolder")
+    @SuppressLint({"ViewHolder", "InflateParams"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
@@ -102,8 +109,130 @@ public class ExercisesDetailAdapter extends BaseAdapter {
             viewHolder.im_c.setImageResource(R.drawable.exercises_c);
             viewHolder.im_d.setImageResource(R.drawable.exercises_d);
             CommonUtil.setExerciseImageEnable(true, im_a, im_b, im_c, im_d);
+        } else {
+            if (item != null) {
+                switch (item.getSelect()) {
+                    case 0:
+                        if (item.getAnswer() == 1) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 2) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 3) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 4) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_right_icon);
+                        }
+                        break;
+                    case 1:
+                        viewHolder.im_a.setImageResource(R.drawable.exercises_error_icon);
+                        if (item.getAnswer() == 2) {
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 3) {
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 4) {
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_right_icon);
+                        }
+                        break;
+                    case 2:
+                        viewHolder.im_b.setImageResource(R.drawable.exercises_error_icon);
+                        if (item.getAnswer() == 1) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 3) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 4) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_right_icon);
+                        }
+                        break;
+                    case 3:
+                        viewHolder.im_c.setImageResource(R.drawable.exercises_error_icon);
+                        if (item.getAnswer() == 1) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 2) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_d);
+                        } else if (item.getAnswer() == 4) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_d.setImageResource(R.drawable.exercises_right_icon);
+                        }
+                        break;
+                    case 4:
+                        viewHolder.im_d.setImageResource(R.drawable.exercises_error_icon);
+                        if (item.getAnswer() == 1) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                        } else if (item.getAnswer() == 2) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_right_icon);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_c);
+                        } else if (item.getAnswer() == 3) {
+                            viewHolder.im_a.setImageResource(R.drawable.exercises_a);
+                            viewHolder.im_b.setImageResource(R.drawable.exercises_b);
+                            viewHolder.im_c.setImageResource(R.drawable.exercises_right_icon);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            viewHolder.im_a.setOnClickListener(v -> {
+                if (!selectePosition.contains(String.valueOf(position))) {
+                    selectePosition.add(String.valueOf(position));
+                }
+                onSelecteListener.selectA(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
+            });
+
+            viewHolder.im_b.setOnClickListener(v -> {
+                if (!selectePosition.contains(String.valueOf(position))) {
+                    selectePosition.add(String.valueOf(position));
+                }
+                onSelecteListener.selectB(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
+            });
+
+            viewHolder.im_c.setOnClickListener(v -> {
+                if (!selectePosition.contains(String.valueOf(position))) {
+                    selectePosition.add(String.valueOf(position));
+                }
+                onSelecteListener.selectC(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
+            });
+
+            viewHolder.im_d.setOnClickListener(v -> {
+                if (!selectePosition.contains(String.valueOf(position))) {
+                    selectePosition.add(String.valueOf(position));
+                }
+                onSelecteListener.selectD(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
+            });
         }
-        return null;
+        return convertView;
     }
 
     @RequiredArgsConstructor
@@ -117,6 +246,17 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         private final ImageView im_c;
         private final TextView tv_d;
         private final ImageView im_d;
+    }
+
+    public interface OnSelecteListener {
+
+        void selectA(Integer position, ImageView im_a, ImageView im_b, ImageView im_c, ImageView im_d);
+
+        void selectB(Integer position, ImageView im_a, ImageView im_b, ImageView im_c, ImageView im_d);
+
+        void selectC(Integer position, ImageView im_a, ImageView im_b, ImageView im_c, ImageView im_d);
+
+        void selectD(Integer position, ImageView im_a, ImageView im_b, ImageView im_c, ImageView im_d);
     }
 
 }
