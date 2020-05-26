@@ -64,9 +64,9 @@ public class ExercisesDetailAdapter extends BaseAdapter {
 
     private OnSelecteListener onSelecteListener;
 
-    public ExercisesDetailAdapter(Context context, List<String> selectePosition) {
+    public ExercisesDetailAdapter(Context context, OnSelecteListener onSelecteListener) {
         this.context = context;
-        this.selectePosition = selectePosition;
+        this.onSelecteListener = onSelecteListener;
     }
 
     @Override
@@ -79,6 +79,11 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         return exercisesBeans == null ? null : exercisesBeans.get(position);
     }
 
+    public void setData(List<ExercisesBean> exercisesBeans) {
+        this.exercisesBeans = exercisesBeans;
+        notifyDataSetChanged();
+    }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -89,7 +94,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.exercises_list_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.exercise_detail_list, null);
             ButterKnife.bind(this, convertView);
             viewHolder = new ViewHolder(tv_subject, tv_a, im_a, tv_b, im_b, tv_c, im_c, tv_d, im_d);
             convertView.setTag(viewHolder);
@@ -98,6 +103,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         }
         ExercisesBean item = getItem(position);
         if (item != null) {
+            viewHolder.subject.setText(item.getSubject());
             viewHolder.tv_a.setText(item.getA());
             viewHolder.tv_b.setText(item.getB());
             viewHolder.tv_c.setText(item.getC());
@@ -111,6 +117,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
             CommonUtil.setExerciseImageEnable(true, im_a, im_b, im_c, im_d);
         } else {
             if (item != null) {
+                CommonUtil.setExerciseImageEnable(false, im_a, im_b, im_c, im_d);
                 switch (item.getSelect()) {
                     case 0:
                         if (item.getAnswer() == 1) {
@@ -203,35 +210,34 @@ public class ExercisesDetailAdapter extends BaseAdapter {
                         break;
                 }
             }
-
-            viewHolder.im_a.setOnClickListener(v -> {
-                if (!selectePosition.contains(String.valueOf(position))) {
-                    selectePosition.add(String.valueOf(position));
-                }
-                onSelecteListener.selectA(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
-            });
-
-            viewHolder.im_b.setOnClickListener(v -> {
-                if (!selectePosition.contains(String.valueOf(position))) {
-                    selectePosition.add(String.valueOf(position));
-                }
-                onSelecteListener.selectB(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
-            });
-
-            viewHolder.im_c.setOnClickListener(v -> {
-                if (!selectePosition.contains(String.valueOf(position))) {
-                    selectePosition.add(String.valueOf(position));
-                }
-                onSelecteListener.selectC(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
-            });
-
-            viewHolder.im_d.setOnClickListener(v -> {
-                if (!selectePosition.contains(String.valueOf(position))) {
-                    selectePosition.add(String.valueOf(position));
-                }
-                onSelecteListener.selectD(position,viewHolder.im_a,viewHolder.im_b,viewHolder.im_c,viewHolder.im_d);
-            });
         }
+        viewHolder.im_a.setOnClickListener(v -> {
+            if (!selectePosition.contains(String.valueOf(position))) {
+                selectePosition.add(String.valueOf(position));
+            }
+            onSelecteListener.selectA(position, viewHolder.im_a, viewHolder.im_b, viewHolder.im_c, viewHolder.im_d);
+        });
+
+        viewHolder.im_b.setOnClickListener(v -> {
+            if (!selectePosition.contains(String.valueOf(position))) {
+                selectePosition.add(String.valueOf(position));
+            }
+            onSelecteListener.selectB(position, viewHolder.im_a, viewHolder.im_b, viewHolder.im_c, viewHolder.im_d);
+        });
+
+        viewHolder.im_c.setOnClickListener(v -> {
+            if (!selectePosition.contains(String.valueOf(position))) {
+                selectePosition.add(String.valueOf(position));
+            }
+            onSelecteListener.selectC(position, viewHolder.im_a, viewHolder.im_b, viewHolder.im_c, viewHolder.im_d);
+        });
+
+        viewHolder.im_d.setOnClickListener(v -> {
+            if (!selectePosition.contains(String.valueOf(position))) {
+                selectePosition.add(String.valueOf(position));
+            }
+            onSelecteListener.selectD(position, viewHolder.im_a, viewHolder.im_b, viewHolder.im_c, viewHolder.im_d);
+        });
         return convertView;
     }
 

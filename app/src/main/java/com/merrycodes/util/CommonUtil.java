@@ -84,13 +84,13 @@ public class CommonUtil {
                             exercisesBean.setA(a);
                         } else if (TextUtils.equals(B, parser.getName())) {
                             String b = parser.nextText();
-                            exercisesBean.setA(b);
+                            exercisesBean.setB(b);
                         } else if (TextUtils.equals(C, parser.getName())) {
                             String c = parser.nextText();
-                            exercisesBean.setA(c);
+                            exercisesBean.setC(c);
                         } else if (TextUtils.equals(D, parser.getName())) {
                             String d = parser.nextText();
-                            exercisesBean.setA(d);
+                            exercisesBean.setD(d);
                         } else if (TextUtils.equals(ANSWER, parser.getName())) {
                             String answer = parser.nextText();
                             exercisesBean.setAnswer(Integer.valueOf(answer));

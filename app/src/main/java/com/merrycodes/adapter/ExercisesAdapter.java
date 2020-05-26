@@ -13,7 +13,6 @@ import com.merrycodes.R;
 import com.merrycodes.R2;
 import com.merrycodes.activity.ExerciseDetailActivity;
 import com.merrycodes.bean.ExercisesBean;
-import com.merrycodes.util.CommonUtil;
 
 import java.util.List;
 
@@ -86,7 +85,7 @@ public class ExercisesAdapter extends BaseAdapter {
             }
             Intent intent = new Intent(context, ExerciseDetailActivity.class);
             intent.putExtra("id", exercisesBean.getId());
-            intent.putExtra("title", exercisesBean.getId());
+            intent.putExtra("title", exercisesBean.getTitle());
             context.startActivity(intent);
         });
 
