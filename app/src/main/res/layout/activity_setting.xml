@@ -77,6 +77,11 @@
             android:contentDescription="@string/description"
             android:src="@drawable/iv_right_arrow" />
     </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E3E3E3" />
 
     <View
         android:layout_width="match_parent"
