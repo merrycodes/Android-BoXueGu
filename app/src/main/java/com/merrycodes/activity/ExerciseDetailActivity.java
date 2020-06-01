@@ -1,9 +1,5 @@
 package com.merrycodes.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -11,14 +7,14 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.merrycodes.R;
 import com.merrycodes.R2;
-import com.merrycodes.adapter.ExercisesAdapter;
 import com.merrycodes.adapter.ExercisesDetailAdapter;
 import com.merrycodes.bean.ExercisesBean;
 import com.merrycodes.util.CommonUtil;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
