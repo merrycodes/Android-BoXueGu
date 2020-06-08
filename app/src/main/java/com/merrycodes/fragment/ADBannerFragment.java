@@ -32,9 +32,9 @@ public class ADBannerFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        assert args != null;
-        imageFlag = args.getString("imageFlag");
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        imageFlag = bundle.getString("imageFlag");
     }
 
     @Override
