@@ -11,7 +11,7 @@ public class CourseBean {
 
     private Integer id;
 
-    private String imageTime;
+    private String imageTitle;
 
     private String title;
 

@@ -2,7 +2,6 @@ package com.merrycodes.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,16 +90,60 @@ public class CourseAdapter extends BaseAdapter {
                 final CourseBean bean = list.get(i);
                 switch (i) {
                     case 0:
-                        CommonUtil.showToast(context,"设置左边图片");
+                        viewHolder.tvLeftTitle.setText(bean.getImageTitle());
+                        viewHolder.tvLeft.setText(bean.getTitle());
+                        setImageView(bean.getId(), viewHolder.imLeft);
+                        viewHolder.imLeft.setOnClickListener(v -> CommonUtil.showToast(context, "跳转到课程详情界面"));
+                        break;
+                    case 1:
+                        viewHolder.tvRightTitle.setText(bean.getImageTitle());
+                        viewHolder.tvRight.setText(bean.getTitle());
+                        setImageView(bean.getId(), viewHolder.imRight);
+                        viewHolder.imRight.setOnClickListener(v -> CommonUtil.showToast(context, "跳转到课程详情界面"));
                         break;
                     default:
                         break;
                 }
             }
         }
+        return convertView;
+    }
 
-
-        return null;
+    private void setImageView(Integer id, ImageView imageView) {
+        switch (id) {
+            case 1:
+                imageView.setImageResource(R.drawable.chapter_1_icon);
+                break;
+            case 2:
+                imageView.setImageResource(R.drawable.chapter_2_icon);
+                break;
+            case 3:
+                imageView.setImageResource(R.drawable.chapter_3_icon);
+                break;
+            case 4:
+                imageView.setImageResource(R.drawable.chapter_4_icon);
+                break;
+            case 5:
+                imageView.setImageResource(R.drawable.chapter_5_icon);
+                break;
+            case 6:
+                imageView.setImageResource(R.drawable.chapter_6_icon);
+                break;
+            case 7:
+                imageView.setImageResource(R.drawable.chapter_7_icon);
+                break;
+            case 8:
+                imageView.setImageResource(R.drawable.chapter_8_icon);
+                break;
+            case 9:
+                imageView.setImageResource(R.drawable.chapter_9_icon);
+                break;
+            case 10:
+                imageView.setImageResource(R.drawable.chapter_10_icon);
+                break;
+            default:
+                break;
+        }
     }
 
     @RequiredArgsConstructor

@@ -21,13 +21,13 @@ import java.util.List;
  * @author MerryCodes
  * @date 2020/6/8 14:45
  */
-public class ABDannerAdapter extends FragmentStatePagerAdapter implements View.OnTouchListener {
+public class ADBannerAdapter extends FragmentStatePagerAdapter implements View.OnTouchListener {
 
     private Handler handler;
 
     private List<CourseBean> courseBeans;
 
-    public ABDannerAdapter(@NonNull FragmentManager fm, int behavior, Handler handler) {
+    public ADBannerAdapter(@NonNull FragmentManager fm, int behavior, Handler handler) {
         super(fm, behavior);
         this.handler = handler;
         courseBeans = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ABDannerAdapter extends FragmentStatePagerAdapter implements View.O
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        handler.removeMessages(CourseView.MESSAGE_ABDANNER_SLID);
+        handler.removeMessages(CourseView.MESSAGE_ADBANNER_SLID);
 
         return false;
     }

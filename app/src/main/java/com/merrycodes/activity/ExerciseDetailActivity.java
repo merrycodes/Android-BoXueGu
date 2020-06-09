@@ -187,8 +187,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        try {
-            InputStream inputStream = getResources().getAssets().open("chapter" + id + ".xml");
+        try (InputStream inputStream = getResources().getAssets().open("chapter" + id + ".xml")) {
             exercisesBeans = CommonUtil.parseExercises(inputStream);
         } catch (Exception e) {
             e.printStackTrace();

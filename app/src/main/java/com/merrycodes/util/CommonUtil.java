@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.merrycodes.bean.CourseBean;
 import com.merrycodes.bean.ExercisesBean;
-import com.merrycodes.constant.ExerciseXMLConstant;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -19,9 +19,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
-import static com.merrycodes.constant.ExerciseXMLConstant.*;
+import static com.merrycodes.constant.XMLConstant.*;
 import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
@@ -117,5 +115,56 @@ public class CommonUtil {
         for (ImageView imageView : imageViews) {
             imageView.setEnabled(value);
         }
+    }
+
+    public static List<List<CourseBean>> getCourseInfos(InputStream inputStream) throws XmlPullParserException, IOException {
+        XmlPullParser parser = Xml.newPullParser();
+        parser.setInput(inputStream, "UTF-8");
+        List<List<CourseBean>> courseInfos = null;
+        List<CourseBean> courseInfo = null;
+        CourseBean courseBean = null;
+        int count = 0;
+        int type = parser.getEventType();
+        while (type != XmlPullParser.END_DOCUMENT) {
+            switch (type) {
+                case XmlPullParser.START_TAG:
+                    if (TextUtils.equals(INFO, parser.getName())) {
+                        courseInfos = new ArrayList<>();
+                        courseInfo = new ArrayList<>();
+                    } else if (TextUtils.equals(COURSE, parser.getName())) {
+                        courseBean = new CourseBean();
+                        String id = parser.getAttributeValue(0);
+                        courseBean.setId(Integer.valueOf(id));
+                    }
+                    if (courseBean != null) {
+                        if (TextUtils.equals(IMG_TITLE, parser.getName())) {
+                            String imgTile = parser.nextText();
+                            courseBean.setImageTitle(imgTile);
+                        } else if (TextUtils.equals(TITLE, parser.getName())) {
+                            String title = parser.nextText();
+                            courseBean.setTitle(title);
+                        } else if (TextUtils.equals(INTRO, parser.getName())) {
+                            String intro = parser.nextText();
+                            courseBean.setIntro(intro);
+                        }
+                    }
+                    break;
+                case XmlPullParser.END_TAG:
+                    if (TextUtils.equals(COURSE, parser.getName())) {
+                        assert courseInfo != null;
+                        count++;
+                        courseInfo.add(courseBean);
+                        if (count % 2 == 0) {
+                            courseInfos.add(courseInfo);
+                            courseInfo = null;
+                            courseInfos = null;
+                        }
+                        courseBean = null;
+                    }
+                    break;
+            }
+            type = parser.next();
+        }
+        return courseInfos;
     }
 }
