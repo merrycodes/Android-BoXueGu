@@ -18,31 +18,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author MerryCodes
  * @date 2020/6/8 15:09
  */
 public class CourseAdapter extends BaseAdapter {
-
-    @BindView(R2.id.tv_left_title)
-    TextView tvLeftTitle;
-
-    @BindView(R2.id.tv_left)
-    TextView tvLeft;
-
-    @BindView(R2.id.tv_right_title)
-    TextView tvRightTitle;
-
-    @BindView(R2.id.tv_right)
-    TextView tvRight;
-
-    @BindView(R2.id.im_left)
-    ImageView imLeft;
-
-    @BindView(R2.id.im_right)
-    ImageView imRight;
 
     private final Context context;
 
@@ -78,8 +59,7 @@ public class CourseAdapter extends BaseAdapter {
         final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.course_list_item, null);
-            ButterKnife.bind(this, convertView);
-            viewHolder = new ViewHolder(tvLeftTitle, tvLeft, tvRightTitle, tvRight, imLeft, imRight);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(convertView);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -146,14 +126,24 @@ public class CourseAdapter extends BaseAdapter {
         }
     }
 
-    @RequiredArgsConstructor
-    private class ViewHolder {
-        private final TextView tvLeftTitle;
-        private final TextView tvLeft;
-        private final TextView tvRightTitle;
-        private final TextView tvRight;
-        private final ImageView imLeft;
-        private final ImageView imRight;
+    static
+    class ViewHolder {
+        @BindView(R.id.im_left)
+        ImageView imLeft;
+        @BindView(R.id.tv_left_title)
+        TextView tvLeftTitle;
+        @BindView(R.id.tv_left)
+        TextView tvLeft;
+        @BindView(R.id.im_right)
+        ImageView imRight;
+        @BindView(R.id.tv_right_title)
+        TextView tvRightTitle;
+        @BindView(R.id.tv_right)
+        TextView tvRight;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 
 }

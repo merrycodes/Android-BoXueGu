@@ -10,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.activity.ExerciseDetailActivity;
 import com.merrycodes.bean.ExercisesBean;
 
@@ -20,21 +19,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.RequiredArgsConstructor;
 
+
 /**
  * @author MerryCodes
  * @date 2020/5/12 21:15
  */
 @RequiredArgsConstructor
 public class ExercisesAdapter extends BaseAdapter {
-
-    @BindView(R2.id.tv_order)
-    TextView tvOrder;
-
-    @BindView(R2.id.tv_title)
-    TextView tvTitle;
-
-    @BindView(R2.id.tv_content)
-    TextView tvContent;
 
     private final Context context;
 
@@ -66,8 +57,7 @@ public class ExercisesAdapter extends BaseAdapter {
         final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.exercises_list_item, null);
-            ButterKnife.bind(this, convertView);
-            viewHolder = new ViewHolder(tvOrder, tvContent, tvTitle);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = ((ViewHolder) convertView.getTag());
@@ -92,10 +82,17 @@ public class ExercisesAdapter extends BaseAdapter {
         return convertView;
     }
 
-    @RequiredArgsConstructor
-    private class ViewHolder {
-        private final TextView order;
-        private final TextView content;
-        private final TextView title;
+    static
+    class ViewHolder {
+        @BindView(R.id.tv_order)
+        TextView order;
+        @BindView(R.id.tv_title)
+        TextView title;
+        @BindView(R.id.tv_content)
+        TextView content;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

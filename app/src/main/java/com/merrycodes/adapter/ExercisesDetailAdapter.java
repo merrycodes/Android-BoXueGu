@@ -2,7 +2,6 @@ package com.merrycodes.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.bean.ExercisesBean;
 import com.merrycodes.util.CommonUtil;
 
@@ -28,33 +26,6 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class ExercisesDetailAdapter extends BaseAdapter {
-
-    @BindView(R2.id.tv_subject)
-    TextView tv_subject;
-
-    @BindView(R2.id.tv_a)
-    TextView tv_a;
-
-    @BindView(R2.id.tv_b)
-    TextView tv_b;
-
-    @BindView(R2.id.tv_c)
-    TextView tv_c;
-
-    @BindView(R2.id.tv_d)
-    TextView tv_d;
-
-    @BindView(R2.id.im_a)
-    ImageView im_a;
-
-    @BindView(R2.id.im_b)
-    ImageView im_b;
-
-    @BindView(R2.id.im_c)
-    ImageView im_c;
-
-    @BindView(R2.id.im_d)
-    ImageView im_d;
 
     private final Context context;
 
@@ -95,8 +66,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.exercise_detail_list, null);
-            ButterKnife.bind(this, convertView);
-            viewHolder = new ViewHolder(tv_subject, tv_a, im_a, tv_b, im_b, tv_c, im_c, tv_d, im_d);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -114,10 +84,10 @@ public class ExercisesDetailAdapter extends BaseAdapter {
             viewHolder.im_b.setImageResource(R.drawable.exercises_b);
             viewHolder.im_c.setImageResource(R.drawable.exercises_c);
             viewHolder.im_d.setImageResource(R.drawable.exercises_d);
-            CommonUtil.setExerciseImageEnable(true, im_a, im_b, im_c, im_d);
+            CommonUtil.setExerciseImageEnable(true, viewHolder.im_a, viewHolder.im_b, viewHolder.im_c, viewHolder.im_d);
         } else {
             if (item != null) {
-                CommonUtil.setExerciseImageEnable(false, im_a, im_b, im_c, im_d);
+                CommonUtil.setExerciseImageEnable(false, viewHolder.im_a, viewHolder.im_b, viewHolder.im_c, viewHolder.im_d);
                 switch (item.getSelect()) {
                     case 0:
                         if (item.getAnswer() == 1) {
@@ -241,17 +211,30 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         return convertView;
     }
 
-    @RequiredArgsConstructor
-    private class ViewHolder {
-        private final TextView subject;
-        private final TextView tv_a;
-        private final ImageView im_a;
-        private final TextView tv_b;
-        private final ImageView im_b;
-        private final TextView tv_c;
-        private final ImageView im_c;
-        private final TextView tv_d;
-        private final ImageView im_d;
+    static
+    class ViewHolder {
+        @BindView(R.id.tv_subject)
+        TextView subject;
+        @BindView(R.id.im_a)
+        ImageView im_a;
+        @BindView(R.id.tv_a)
+        TextView tv_a;
+        @BindView(R.id.im_b)
+        ImageView im_b;
+        @BindView(R.id.tv_b)
+        TextView tv_b;
+        @BindView(R.id.im_c)
+        ImageView im_c;
+        @BindView(R.id.tv_c)
+        TextView tv_c;
+        @BindView(R.id.im_d)
+        ImageView im_d;
+        @BindView(R.id.tv_d)
+        TextView tv_d;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 
     public interface OnSelecteListener {

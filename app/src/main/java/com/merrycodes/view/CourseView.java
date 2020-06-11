@@ -45,6 +45,7 @@ public class CourseView {
     private List<CourseBean> courseInfo;
 
     List<List<CourseBean>> courseInfos;
+
     private CourseAdapter courseAdapter;
 
     public CourseView(FragmentActivity fragmentActivity) {

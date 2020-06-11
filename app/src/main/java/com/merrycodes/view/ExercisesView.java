@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  */
 public class ExercisesView {
 
-    @BindView(R2.id.lv_exerviseslist)
+    @BindView(R2.id.lv_exerciselist)
     ListView listView;
 
     private View view;
