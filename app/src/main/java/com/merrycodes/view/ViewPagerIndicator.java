@@ -32,6 +32,10 @@ public class ViewPagerIndicator extends LinearLayout {
         setGravity(Gravity.CENTER);
     }
 
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     public void setCurrentPosition(Integer currentIndex) {
         this.currentIndex = currentIndex;
         removeAllViews();

@@ -156,8 +156,7 @@ public class CommonUtil {
                         courseInfo.add(courseBean);
                         if (count % 2 == 0) {
                             courseInfos.add(courseInfo);
-                            courseInfo = null;
-                            courseInfos = null;
+                            courseInfo = new ArrayList<>();
                         }
                         courseBean = null;
                     }
