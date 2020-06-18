@@ -2,6 +2,7 @@ package com.merrycodes.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
+import com.merrycodes.activity.VideoListActivity;
 import com.merrycodes.bean.CourseBean;
-import com.merrycodes.util.CommonUtil;
 
 import java.util.List;
 
@@ -40,12 +40,12 @@ public class CourseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return context == null ? 0 : courseBeans.size();
+        return courseBeans == null ? 0 : courseBeans.size();
     }
 
     @Override
     public List<CourseBean> getItem(int position) {
-        return context == null ? null : courseBeans.get(position);
+        return courseBeans == null ? null : courseBeans.get(position);
     }
 
     @Override
@@ -73,13 +73,23 @@ public class CourseAdapter extends BaseAdapter {
                         viewHolder.tvLeftTitle.setText(bean.getImageTitle());
                         viewHolder.tvLeft.setText(bean.getTitle());
                         setImageView(bean.getId(), viewHolder.imLeft);
-                        viewHolder.imLeft.setOnClickListener(v -> CommonUtil.showToast(context, "跳转到课程详情界面"));
+                        viewHolder.imLeft.setOnClickListener(v -> {
+                            Intent intent = new Intent(context, VideoListActivity.class);
+                            intent.putExtra("id", bean.getId());
+                            intent.putExtra("intro", bean.getIntro());
+                            context.startActivity(intent);
+                        });
                         break;
                     case 1:
                         viewHolder.tvRightTitle.setText(bean.getImageTitle());
                         viewHolder.tvRight.setText(bean.getTitle());
                         setImageView(bean.getId(), viewHolder.imRight);
-                        viewHolder.imRight.setOnClickListener(v -> CommonUtil.showToast(context, "跳转到课程详情界面"));
+                        viewHolder.imRight.setOnClickListener(v -> {
+                            Intent intent = new Intent(context, VideoListActivity.class);
+                            intent.putExtra("id", bean.getId());
+                            intent.putExtra("intro", bean.getIntro());
+                            context.startActivity(intent);
+                        });
                         break;
                     default:
                         break;
@@ -128,16 +138,22 @@ public class CourseAdapter extends BaseAdapter {
 
     static
     class ViewHolder {
+
         @BindView(R.id.im_left)
         ImageView imLeft;
+
         @BindView(R.id.tv_left_title)
         TextView tvLeftTitle;
+
         @BindView(R.id.tv_left)
         TextView tvLeft;
+
         @BindView(R.id.im_right)
         ImageView imRight;
+
         @BindView(R.id.tv_right_title)
         TextView tvRightTitle;
+
         @BindView(R.id.tv_right)
         TextView tvRight;
 

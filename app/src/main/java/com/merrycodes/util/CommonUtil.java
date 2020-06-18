@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.merrycodes.constant.XMLConstant.*;
+import static com.merrycodes.constant.AssetsConstant.*;
 import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 

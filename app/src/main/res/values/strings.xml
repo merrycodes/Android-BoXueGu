@@ -34,4 +34,6 @@
     <string name="info_signature">签明</string>
     <string name="info_default_signature">大家好</string>
     <string name="intro">简 介</string>
+    <string name="android_exercises">Android 基础教程1-10章视频</string>
+    <string name="video">视频</string>
 </resources>

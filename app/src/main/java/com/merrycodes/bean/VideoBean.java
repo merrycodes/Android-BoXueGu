@@ -9,13 +9,13 @@ import lombok.Data;
 @Data
 public class VideoBean {
 
-    private Integer chapteId;
+    private Integer chapterId;
 
     private Integer videoId;
 
     private String title;
 
-    private String seecondTitle;
+    private String secondTitle;
 
     private String videoPath;
 

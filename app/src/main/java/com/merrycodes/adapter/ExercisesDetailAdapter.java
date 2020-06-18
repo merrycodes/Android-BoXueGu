@@ -213,22 +213,31 @@ public class ExercisesDetailAdapter extends BaseAdapter {
 
     static
     class ViewHolder {
+
         @BindView(R.id.tv_subject)
         TextView subject;
+
         @BindView(R.id.im_a)
         ImageView im_a;
+
         @BindView(R.id.tv_a)
         TextView tv_a;
+
         @BindView(R.id.im_b)
         ImageView im_b;
+
         @BindView(R.id.tv_b)
         TextView tv_b;
+
         @BindView(R.id.im_c)
         ImageView im_c;
+
         @BindView(R.id.tv_c)
         TextView tv_c;
+
         @BindView(R.id.im_d)
         ImageView im_d;
+
         @BindView(R.id.tv_d)
         TextView tv_d;
 

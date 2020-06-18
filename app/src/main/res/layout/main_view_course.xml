@@ -22,8 +22,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:layout_marginStart="5dp"
+            android:text="@string/android_exercises"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -35,14 +36,15 @@
             android:layout_marginRight="8dp"
             android:background="#E4E4E4" />
 
-        <ListView
-            android:id="@+id/lv_courseList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="55dp"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:scrollbars="none" />
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_courseList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:scrollbars="none" />
 
 </LinearLayout>

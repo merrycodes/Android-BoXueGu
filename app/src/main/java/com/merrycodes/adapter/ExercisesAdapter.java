@@ -84,10 +84,13 @@ public class ExercisesAdapter extends BaseAdapter {
 
     static
     class ViewHolder {
+
         @BindView(R.id.tv_order)
         TextView order;
+
         @BindView(R.id.tv_title)
         TextView title;
+
         @BindView(R.id.tv_content)
         TextView content;
 

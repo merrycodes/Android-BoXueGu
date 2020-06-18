@@ -4,7 +4,7 @@ package com.merrycodes.constant;
  * @author MerryCodes
  * @date 2020/5/19 16:45
  */
-public interface XMLConstant {
+public interface AssetsConstant {
 
     String INFO = "infos";
 
@@ -29,4 +29,12 @@ public interface XMLConstant {
     String C = "c";
 
     String D = "d";
+
+    String CHAPTER_ID = "chapterId";
+
+    String VIDEO_ID = "videoId";
+
+    String SECOND_TITLE = "secondTitle";
+
+    String VIDEO_PATH = "videoPath";
 }
