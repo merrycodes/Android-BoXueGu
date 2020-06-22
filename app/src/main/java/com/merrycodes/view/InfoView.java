@@ -55,8 +55,6 @@ public class InfoView {
 
     private final LayoutInflater layoutInflater;
 
-    private SharedPreferences sharedPreferences;
-
     public InfoView(Activity activity) {
         this.activity = activity;
         this.layoutInflater = LayoutInflater.from(activity);
@@ -71,11 +69,10 @@ public class InfoView {
         view = layoutInflater.inflate(R.layout.main_view_info, null);
         ButterKnife.bind(this, view);
         view.setVisibility(View.VISIBLE);
-        sharedPreferences = activity.getSharedPreferences(LOGIN_INFO, Context.MODE_PRIVATE);
-        setLoginParams(readLoginStatus());
+        setLoginParams(CommonUtil.readLoginStatus(activity));
 
         linearLayout.setOnClickListener(v -> {
-            if (readLoginStatus()) {
+            if (CommonUtil.readLoginStatus(activity)) {
                 // 跳转到个人资料界面
                 Intent intent = new Intent(activity, UserInfoActivity.class);
                 activity.startActivity(intent);
@@ -87,7 +84,7 @@ public class InfoView {
         });
 
         rlHistory.setOnClickListener(v -> {
-            if (readLoginStatus()) {
+            if (CommonUtil.readLoginStatus(activity)) {
                 // 跳转到播放记录界面
                 CommonUtil.showToast(activity, "跳转到播放记录界面");
             } else {
@@ -96,7 +93,7 @@ public class InfoView {
         });
 
         rlSetting.setOnClickListener(v -> {
-            if (readLoginStatus()) {
+            if (CommonUtil.readLoginStatus(activity)) {
                 CommonUtil.showToast(activity, "跳转到设置界面");
                 Intent intent = new Intent(activity, SettingActivity.class);
                 activity.startActivityForResult(intent, 1);
@@ -129,12 +126,4 @@ public class InfoView {
         view.setVisibility(View.VISIBLE);
     }
 
-    /**
-     * 读取用户是否登陆
-     *
-     * @return 用户是否登陆
-     */
-    private Boolean readLoginStatus() {
-        return sharedPreferences.getBoolean(IS_LOGIN, false);
-    }
 }

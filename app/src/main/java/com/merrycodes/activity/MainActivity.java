@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 exitTime = System.currentTimeMillis();
             } else {
                 MainActivity.this.finish();
-                if (readLoginStatus()) {
+                if (CommonUtil.readLoginStatus(this)) {
                     clearLoginStatus();
                 }
                 System.exit(0);
@@ -278,15 +278,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putBoolean(IS_LOGIN, false);
         editor.putString(LOGIN_USER_NAME, "");
         editor.apply();
-    }
-
-    /**
-     * 读取登陆状态
-     *
-     * @return 登陆状态
-     */
-    private Boolean readLoginStatus() {
-        return sharedPreferences.getBoolean(IS_LOGIN, false);
     }
 
     @Override

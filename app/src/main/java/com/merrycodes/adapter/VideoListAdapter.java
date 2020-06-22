@@ -28,7 +28,7 @@ public class VideoListAdapter extends BaseAdapter {
 
     private OnSelecteListener onSelecteListener;
 
-    private Integer selectedPosition;
+    private Integer selectedPosition =-1;
 
     private List<VideoBean> videoList;
 
@@ -69,13 +69,14 @@ public class VideoListAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.video_list_item, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         VideoBean videoBean = getItem(position);
         viewHolder.imVideoIcon.setImageResource(R.drawable.course_bar_icon);
         viewHolder.tvVideoTitle.setTextColor(Color.parseColor("#333333"));
         if (videoBean != null) {
+            viewHolder.tvVideoTitle.setText(videoBean.getSecondTitle());
             if (selectedPosition == position) {
                 viewHolder.imVideoIcon.setImageResource(R.drawable.course_intro_icon);
                 viewHolder.tvVideoTitle.setTextColor(Color.parseColor("#009958"));
@@ -88,18 +89,18 @@ public class VideoListAdapter extends BaseAdapter {
             if (videoBean == null) {
                 return;
             }
-
+            onSelecteListener.OnSelect(position,viewHolder.imVideoIcon);
         });
         return convertView;
     }
 
-    interface OnSelecteListener {
+    public interface OnSelecteListener {
 
         void OnSelect(Integer position, ImageView imageView);
 
     }
 
-    private class ViewHolder {
+    class ViewHolder {
 
         @BindView(R.id.im_video_icon)
         ImageView imVideoIcon;

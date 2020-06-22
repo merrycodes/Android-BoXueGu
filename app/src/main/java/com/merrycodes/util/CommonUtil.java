@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.merrycodes.constant.AssetsConstant.*;
+import static com.merrycodes.constant.CommonConstant.IS_LOGIN;
 import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
@@ -55,6 +56,11 @@ public class CommonUtil {
     public static String getUserName(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(LOGIN_INFO, Context.MODE_PRIVATE);
         return sharedPreferences.getString(LOGIN_USER_NAME, "");
+    }
+
+    public static Boolean readLoginStatus(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(LOGIN_INFO, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(IS_LOGIN, false);
     }
 
     public static List<ExercisesBean> parseExercises(InputStream inputStream) throws XmlPullParserException, IOException {

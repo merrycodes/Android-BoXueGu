@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.VideoListActivity"></activity>
+        <activity android:name=".activity.VidePlayActivity"></activity>
+        <activity android:name=".activity.VideoListActivity" />
         <activity android:name=".activity.ExerciseDetailActivity" />
         <activity android:name=".activity.ChangeUserInfoActivity" />
         <activity android:name=".activity.UserInfoActivity" />

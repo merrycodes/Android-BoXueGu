@@ -1,6 +1,11 @@
 package com.merrycodes.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -8,7 +13,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
+import com.merrycodes.adapter.VideoListAdapter;
 import com.merrycodes.bean.VideoBean;
+import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.DBUtil;
 
 import org.json.JSONArray;
@@ -30,7 +37,7 @@ import static com.merrycodes.constant.AssetsConstant.TITLE;
 import static com.merrycodes.constant.AssetsConstant.VIDEO_ID;
 import static com.merrycodes.constant.AssetsConstant.VIDEO_PATH;
 
-public class VideoListActivity extends AppCompatActivity {
+public class VideoListActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.tv_intro)
     TextView tvIntro;
@@ -55,6 +62,8 @@ public class VideoListActivity extends AppCompatActivity {
 
     private ArrayList<VideoBean> videoList;
 
+    private VideoListAdapter videoListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +77,33 @@ public class VideoListActivity extends AppCompatActivity {
     }
 
     private void init() {
-
+        videoListAdapter = new VideoListAdapter(this, (position, imageView) -> {
+            videoListAdapter.selectedPosition(position);
+            VideoBean videoBean = videoList.get(position);
+            String videoPath = videoBean.getVideoPath();
+            videoListAdapter.notifyDataSetChanged();
+            if (TextUtils.isEmpty(videoPath)) {
+                Intent intent = new Intent(this, VidePlayActivity.class);
+                intent.putExtra("videoPaht", videoPath);
+                intent.putExtra("position", position);
+                startActivityForResult(intent, 1);
+            } else {
+                if (CommonUtil.readLoginStatus(this)) {
+                    String username = CommonUtil.getUserName(this);
+                    db.saveVideoPlayList(videoBean, username);
+                }
+                CommonUtil.showToast(this, "跳转到播放视频界面");
+            }
+        });
+        lvVideoList.setAdapter(videoListAdapter);
+        tvIntro.setOnClickListener(this);
+        tvVideo.setOnClickListener(this);
+        videoListAdapter.setData(videoList);
+        tvChapterIntro.setText(intro);
+        tvIntro.setBackgroundColor(Color.parseColor("#30B4FF"));
+        tvVideo.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        tvIntro.setTextColor(Color.parseColor("#FFFFFF"));
+        tvVideo.setTextColor(Color.parseColor("#000000"));
     }
 
     @SneakyThrows
@@ -96,10 +131,35 @@ public class VideoListActivity extends AppCompatActivity {
         @Cleanup BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
-        if ((line = bufferedReader.readLine()) != null) {
+        while ((line = bufferedReader.readLine()) != null) {
             stringBuilder.append(line);
             stringBuilder.append("\n");
         }
-        return null;
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_intro:
+                lvVideoList.setVisibility(View.GONE);
+                svChapterIntro.setVisibility(View.VISIBLE);
+                tvIntro.setBackgroundColor(Color.parseColor("#30B4FF"));
+                tvVideo.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                tvIntro.setTextColor(Color.parseColor("#FFFFFF"));
+                tvVideo.setTextColor(Color.parseColor("#000000"));
+                break;
+            case R.id.tv_video:
+                lvVideoList.setVisibility(View.VISIBLE);
+                svChapterIntro.setVisibility(View.GONE);
+                tvIntro.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                tvVideo.setBackgroundColor(Color.parseColor("#30B4FF"));
+                tvIntro.setTextColor(Color.parseColor("#000000"));
+                tvVideo.setTextColor(Color.parseColor("#FFFFFF"));
+                break;
+            default:
+                break;
+
+        }
     }
 }

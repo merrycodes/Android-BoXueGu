@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.merrycodes.bean.UserBean;
+import com.merrycodes.bean.VideoBean;
 import com.merrycodes.enums.UserInfoEnum;
+import com.merrycodes.enums.VideoPlayListEnum;
 import com.merrycodes.sqlite.SQLiteHelper;
+
 
 /**
  * @author MerryCodes
@@ -59,5 +62,44 @@ public class DBUtil {
         ContentValues contentValues = new ContentValues();
         contentValues.put(key, value);
         database.update(SQLiteHelper.USER_INFO, contentValues, "username = ?", new String[]{username});
+    }
+
+    public void saveVideoPlayList(VideoBean videoBean, String username) {
+        if (hasVideoPlay(videoBean.getChapterId(), videoBean.getVideoId(), username)) {
+            Boolean isDelete = deleteVideoPlay(videoBean.getChapterId(), videoBean.getVideoId(), username);
+            if (isDelete) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(VideoPlayListEnum.USERNAME.getValue(), username);
+                contentValues.put(VideoPlayListEnum.CHAPTER_ID.getValue(), videoBean.getChapterId());
+                contentValues.put(VideoPlayListEnum.VIDEO_ID.getValue(), videoBean.getVideoId());
+                contentValues.put(VideoPlayListEnum.VIDEO_PATH.getValue(), videoBean.getVideoPath());
+                contentValues.put(VideoPlayListEnum.TITLE.getValue(), videoBean.getTitle());
+                contentValues.put(VideoPlayListEnum.SECONDE_TITLE.getValue(), videoBean.getSecondTitle());
+                database.insert(SQLiteHelper.VIDEO_PLAY_LIST, null, contentValues);
+            }
+        }
+    }
+
+    private Boolean deleteVideoPlay(Integer chapterId, Integer videoId, String username) {
+        boolean isDelete = false;
+        int row = database.delete(SQLiteHelper.USER_INFO, "chapterId = ? AND videoId = ? AND username = ?",
+                new String[]{String.valueOf(chapterId), String.valueOf(videoId), username});
+        if (row > 0) {
+            isDelete = true;
+        }
+        return isDelete;
+    }
+
+    private Boolean hasVideoPlay(Integer chapterId, Integer videoId, String username) {
+        boolean hasVideo = false;
+        String sql = "SELECT * FROM " + SQLiteHelper.VIDEO_PLAY_LIST + " WHERE chapterId = ? AND " +
+                "videoId = ? AND username = ?";
+        Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(chapterId), String.valueOf(videoId), username});
+
+        if (cursor.moveToFirst()) {
+            hasVideo = true;
+        }
+        cursor.close();
+        return hasVideo;
     }
 }
