@@ -36,4 +36,5 @@
     <string name="intro">简 介</string>
     <string name="android_exercises">Android 基础教程1-10章视频</string>
     <string name="video">视频</string>
+    <string name="have_not_play_history">暂无播放记录</string>
 </resources>

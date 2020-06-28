@@ -19,6 +19,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.merrycodes.constant.AssetsConstant.ID;
+import static com.merrycodes.constant.AssetsConstant.INTRO;
+
 /**
  * @author MerryCodes
  * @date 2020/6/8 15:09
@@ -75,8 +78,8 @@ public class CourseAdapter extends BaseAdapter {
                         setImageView(bean.getId(), viewHolder.imLeft);
                         viewHolder.imLeft.setOnClickListener(v -> {
                             Intent intent = new Intent(context, VideoListActivity.class);
-                            intent.putExtra("id", bean.getId());
-                            intent.putExtra("intro", bean.getIntro());
+                            intent.putExtra(ID, bean.getId());
+                            intent.putExtra(INTRO, bean.getIntro());
                             context.startActivity(intent);
                         });
                         break;
@@ -86,8 +89,8 @@ public class CourseAdapter extends BaseAdapter {
                         setImageView(bean.getId(), viewHolder.imRight);
                         viewHolder.imRight.setOnClickListener(v -> {
                             Intent intent = new Intent(context, VideoListActivity.class);
-                            intent.putExtra("id", bean.getId());
-                            intent.putExtra("intro", bean.getIntro());
+                            intent.putExtra(ID, bean.getId());
+                            intent.putExtra(INTRO, bean.getIntro());
                             context.startActivity(intent);
                         });
                         break;

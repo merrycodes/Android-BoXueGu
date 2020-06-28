@@ -5,11 +5,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
@@ -32,6 +32,9 @@ import lombok.Cleanup;
 import lombok.SneakyThrows;
 
 import static com.merrycodes.constant.AssetsConstant.CHAPTER_ID;
+import static com.merrycodes.constant.AssetsConstant.ID;
+import static com.merrycodes.constant.AssetsConstant.INTRO;
+import static com.merrycodes.constant.AssetsConstant.POSITION;
 import static com.merrycodes.constant.AssetsConstant.SECOND_TITLE;
 import static com.merrycodes.constant.AssetsConstant.TITLE;
 import static com.merrycodes.constant.AssetsConstant.VIDEO_ID;
@@ -69,8 +72,8 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_list);
         ButterKnife.bind(this);
-        id = getIntent().getIntExtra("id", 0);
-        intro = getIntent().getStringExtra("intro");
+        id = getIntent().getIntExtra(ID, 0);
+        intro = getIntent().getStringExtra(INTRO);
         db = DBUtil.getInstance(this);
         initData();
         init();
@@ -84,8 +87,8 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
             videoListAdapter.notifyDataSetChanged();
             if (TextUtils.isEmpty(videoPath)) {
                 Intent intent = new Intent(this, VidePlayActivity.class);
-                intent.putExtra("videoPaht", videoPath);
-                intent.putExtra("position", position);
+                intent.putExtra(VIDEO_PATH, videoPath);
+                intent.putExtra(POSITION, position);
                 startActivityForResult(intent, 1);
             } else {
                 if (CommonUtil.readLoginStatus(this)) {
@@ -162,4 +165,20 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
 
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            int position = data.getIntExtra(POSITION, 0);
+            videoListAdapter.selectedPosition(position);
+            lvVideoList.setVisibility(View.VISIBLE);
+            svChapterIntro.setVisibility(View.GONE);
+            tvIntro.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            tvVideo.setBackgroundColor(Color.parseColor("#30B4FF"));
+            tvIntro.setTextColor(Color.parseColor("#000000"));
+            tvVideo.setTextColor(Color.parseColor("#FFFFFF"));
+        }
+    }
+
 }

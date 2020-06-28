@@ -6,6 +6,8 @@ package com.merrycodes.constant;
  */
 public interface AssetsConstant {
 
+    String ID = "id";
+
     String INFO = "infos";
 
     String EXERCISES = "exercises";
@@ -37,4 +39,6 @@ public interface AssetsConstant {
     String SECOND_TITLE = "secondTitle";
 
     String VIDEO_PATH = "videoPath";
+
+    String POSITION = "position";
 }
