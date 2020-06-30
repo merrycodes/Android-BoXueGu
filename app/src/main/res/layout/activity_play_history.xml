@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".activity.PalyHistoryActivity">
+    tools:context=".activity.PlayHistoryActivity">
 
     <include layout="@layout/main_title_bar" />
 
@@ -23,7 +23,7 @@
             android:scrollbars="none" />
 
         <TextView
-            android:id="@+id/tv_paly_history"
+            android:id="@+id/tv_play_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

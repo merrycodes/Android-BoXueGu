@@ -1,7 +1,5 @@
 package com.merrycodes.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,33 +13,40 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.merrycodes.R;
-import com.merrycodes.R2;
-import com.merrycodes.util.CommonUtil;
+import androidx.appcompat.app.AppCompatActivity;
 
-import static com.merrycodes.constant.CommonConstant.*;
+import com.merrycodes.R;
+import com.merrycodes.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.merrycodes.constant.CommonConstant.CHANGE_NICKNAME;
+import static com.merrycodes.constant.CommonConstant.CHANGE_SIGNATURE;
+import static com.merrycodes.constant.CommonConstant.CONTENT;
+import static com.merrycodes.constant.CommonConstant.FLAG;
+import static com.merrycodes.constant.CommonConstant.NICKNAME;
+import static com.merrycodes.constant.CommonConstant.SIGNATURE;
+import static com.merrycodes.constant.CommonConstant.TITLE;
+
 public class ChangeUserInfoActivity extends AppCompatActivity {
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.tv_save)
+    @BindView(R.id.tv_save)
     TextView tvSave;
 
-    @BindView(R2.id.title_bar)
+    @BindView(R.id.title_bar)
     RelativeLayout titleBar;
 
-    @BindView(R2.id.et_content)
+    @BindView(R.id.et_content)
     EditText etContent;
 
-    @BindView(R2.id.im_delete)
+    @BindView(R.id.im_delete)
     ImageView imDelete;
 
     private Integer flag;

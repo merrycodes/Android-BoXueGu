@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.view.CourseView;
 import com.merrycodes.view.ExercisesView;
@@ -35,49 +34,49 @@ import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.title_bar)
+    @BindView(R.id.title_bar)
     RelativeLayout titleBar;
 
-    @BindView(R2.id.main_body)
+    @BindView(R.id.main_body)
     FrameLayout mainBody;
 
-    @BindView(R2.id.main_bar)
+    @BindView(R.id.main_bar)
     LinearLayout mainBar;
 
     // course
-    @BindView(R2.id.course_btn)
+    @BindView(R.id.course_btn)
     RelativeLayout courseBtn;
 
-    @BindView(R2.id.image_course)
+    @BindView(R.id.image_course)
     ImageView imCourse;
 
-    @BindView(R2.id.text_course)
+    @BindView(R.id.text_course)
     TextView tvCourse;
 
     // exercises
-    @BindView(R2.id.exercises_btn)
+    @BindView(R.id.exercises_btn)
     RelativeLayout exercisesBtn;
 
-    @BindView(R2.id.image_exercises)
+    @BindView(R.id.image_exercises)
     ImageView imExercises;
 
-    @BindView(R2.id.text_exercises)
+    @BindView(R.id.text_exercises)
     TextView tvExercises;
 
     // info
-    @BindView(R2.id.info_btn)
+    @BindView(R.id.info_btn)
     RelativeLayout infoBtn;
 
-    @BindView(R2.id.image_info)
+    @BindView(R.id.image_info)
     ImageView imInfo;
 
-    @BindView(R2.id.text_info)
+    @BindView(R.id.text_info)
     TextView tvInfo;
 
     private InfoView infoView;

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,22 +21,22 @@ import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
 public class SettingActivity extends AppCompatActivity {
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.title_bar)
+    @BindView(R.id.title_bar)
     RelativeLayout titleBar;
 
-    @BindView(R2.id.rl_modify_password)
+    @BindView(R.id.rl_modify_password)
     RelativeLayout rlModifyPassword;
 
-    @BindView(R2.id.rl_security_setting)
+    @BindView(R.id.rl_security_setting)
     RelativeLayout rlSecuritySetting;
 
-    @BindView(R2.id.rl_login_out)
+    @BindView(R.id.rl_login_out)
     RelativeLayout rlLoginOut;
 
     private SharedPreferences sharedPreferences;

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.adapter.ExercisesAdapter;
 import com.merrycodes.bean.ExercisesBean;
 
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
  */
 public class ExercisesView {
 
-    @BindView(R2.id.lv_exerciselist)
+    @BindView(R.id.lv_exerciselist)
     ListView listView;
 
     private View view;

@@ -2,7 +2,6 @@ package com.merrycodes.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
@@ -18,7 +17,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.adapter.ADBannerAdapter;
 import com.merrycodes.adapter.CourseAdapter;
 import com.merrycodes.bean.CourseBean;
@@ -41,16 +39,16 @@ import lombok.SneakyThrows;
  */
 public class CourseView {
 
-    @BindView(R2.id.lv_courseList)
+    @BindView(R.id.lv_courseList)
     ListView lvCourseList;
 
-    @BindView(R2.id.vp_ADBanner)
+    @BindView(R.id.vp_ADBanner)
     ViewPager vpADBanner;
 
-    @BindView(R2.id.vpi_indicator)
+    @BindView(R.id.vpi_indicator)
     ViewPagerIndicator vpiIndicator;
 
-    @BindView(R2.id.rl_ADBanner)
+    @BindView(R.id.rl_ADBanner)
     RelativeLayout rlADBanner;
 
     public static final int MESSAGE_ADBANNER_SLID = 1;

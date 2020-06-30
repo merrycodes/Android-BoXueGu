@@ -1,9 +1,5 @@
 package com.merrycodes.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,52 +8,64 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.bean.UserBean;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.DBUtil;
 
-import static com.merrycodes.constant.CommonConstant.*;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.merrycodes.constant.CommonConstant.CHANGE_NICKNAME;
+import static com.merrycodes.constant.CommonConstant.CHANGE_SIGNATURE;
+import static com.merrycodes.constant.CommonConstant.CONTENT;
+import static com.merrycodes.constant.CommonConstant.FEMALE;
+import static com.merrycodes.constant.CommonConstant.FLAG;
+import static com.merrycodes.constant.CommonConstant.MALE;
+import static com.merrycodes.constant.CommonConstant.NICKNAME;
+import static com.merrycodes.constant.CommonConstant.SEX;
+import static com.merrycodes.constant.CommonConstant.SIGNATURE;
+import static com.merrycodes.constant.CommonConstant.TITLE;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String userName;
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.title_bar)
+    @BindView(R.id.title_bar)
     RelativeLayout titleBar;
 
-    @BindView(R2.id.username)
+    @BindView(R.id.username)
     RelativeLayout rlUsername;
 
-    @BindView(R2.id.nickname)
+    @BindView(R.id.nickname)
     RelativeLayout rlNickname;
 
-    @BindView(R2.id.sex)
+    @BindView(R.id.sex)
     RelativeLayout rlSex;
 
-    @BindView(R2.id.signature)
+    @BindView(R.id.signature)
     RelativeLayout rlSignature;
 
-    @BindView(R2.id.info_username)
+    @BindView(R.id.info_username)
     TextView tvUsername;
 
-    @BindView(R2.id.info_nickname)
+    @BindView(R.id.info_nickname)
     TextView tvNickname;
 
-    @BindView(R2.id.info_sex)
+    @BindView(R.id.info_sex)
     TextView tvSex;
 
-    @BindView(R2.id.info_signature)
+    @BindView(R.id.info_signature)
     TextView tvSignature;
 
     @Override

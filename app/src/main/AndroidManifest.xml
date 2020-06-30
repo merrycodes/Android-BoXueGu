@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.PalyHistoryActivity"></activity>
-        <activity android:name=".activity.VidePlayActivity" />
+        <activity android:name=".activity.PlayHistoryActivity"></activity>
+        <activity android:name=".activity.VideoPlayActivity" />
         <activity android:name=".activity.VideoListActivity" />
         <activity android:name=".activity.ExerciseDetailActivity" />
         <activity android:name=".activity.ChangeUserInfoActivity" />

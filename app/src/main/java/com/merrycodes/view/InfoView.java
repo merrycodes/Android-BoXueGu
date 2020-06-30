@@ -2,9 +2,7 @@ package com.merrycodes.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,17 +11,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.activity.LoginActivity;
+import com.merrycodes.activity.PlayHistoryActivity;
 import com.merrycodes.activity.SettingActivity;
 import com.merrycodes.activity.UserInfoActivity;
 import com.merrycodes.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.merrycodes.constant.CommonConstant.IS_LOGIN;
-import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 
 
 /**
@@ -34,19 +29,19 @@ import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
  */
 public class InfoView {
 
-    @BindView(R2.id.layout_head)
+    @BindView(R.id.layout_head)
     LinearLayout linearLayout;
 
-    @BindView(R2.id.im_head)
+    @BindView(R.id.im_head)
     ImageView imHead;
 
-    @BindView(R2.id.rl_history)
+    @BindView(R.id.rl_history)
     RelativeLayout rlHistory;
 
-    @BindView(R2.id.rl_setting)
+    @BindView(R.id.rl_setting)
     RelativeLayout rlSetting;
 
-    @BindView(R2.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView tvUsername;
 
     private View view;
@@ -86,7 +81,8 @@ public class InfoView {
         rlHistory.setOnClickListener(v -> {
             if (CommonUtil.readLoginStatus(activity)) {
                 // 跳转到播放记录界面
-                CommonUtil.showToast(activity, "跳转到播放记录界面");
+                Intent intent = new Intent(activity, PlayHistoryActivity.class);
+                activity.startActivity(intent);
             } else {
                 CommonUtil.showToast(activity, "您还未登陆，请先登陆");
             }

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
@@ -26,25 +25,25 @@ import static com.merrycodes.constant.CommonConstant.SECURITY;
 
 public class FindPasswordActivity extends AppCompatActivity {
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.tv_username)
+    @BindView(R.id.tv_username)
     TextView tvUsername;
 
-    @BindView(R2.id.et_username)
+    @BindView(R.id.et_username)
     EditText etUsername;
 
-    @BindView(R2.id.et_validate_name)
+    @BindView(R.id.et_validate_name)
     EditText etValidateName;
 
-    @BindView(R2.id.tv_reset_password)
+    @BindView(R.id.tv_reset_password)
     TextView tvResetPassword;
 
-    @BindView(R2.id.btn_validate)
+    @BindView(R.id.btn_validate)
     Button btnValidate;
 
     private String from;

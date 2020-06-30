@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.adapter.ExercisesDetailAdapter;
 import com.merrycodes.bean.ExercisesBean;
 import com.merrycodes.util.CommonUtil;
@@ -29,16 +28,16 @@ public class ExerciseDetailActivity extends AppCompatActivity {
 
     private List<ExercisesBean> exercisesBeans;
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.title_bar)
+    @BindView(R.id.title_bar)
     RelativeLayout titleBar;
 
-    @BindView(R2.id.exercise_list)
+    @BindView(R.id.exercise_list)
 
     ListView exerciseList;
 

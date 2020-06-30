@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
@@ -26,28 +25,28 @@ import static com.merrycodes.constant.CommonConstant.LOGIN_USER_NAME;
 
 public class LoginActivity extends AppCompatActivity {
 
-    @BindView(R2.id.et_username)
+    @BindView(R.id.et_username)
     EditText etUserName;
 
-    @BindView(R2.id.et_password)
+    @BindView(R.id.et_password)
     EditText etPassWord;
 
-    @BindView(R2.id.btn_login)
+    @BindView(R.id.btn_login)
     Button btLogin;
 
-    @BindView(R2.id.tv_register)
+    @BindView(R.id.tv_register)
     TextView tvRegister;
 
-    @BindView(R2.id.tv_find_password)
+    @BindView(R.id.tv_find_password)
     TextView tvFindPassword;
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.title_bar)
+    @BindView(R.id.title_bar)
     RelativeLayout titleBar;
 
     private SharedPreferences sharedPreferences;

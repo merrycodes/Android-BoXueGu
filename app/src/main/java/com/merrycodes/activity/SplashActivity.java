@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,7 +22,7 @@ import butterknife.ButterKnife;
  */
 public class SplashActivity extends AppCompatActivity {
 
-    @BindView(R2.id.splash_version)
+    @BindView(R.id.splash_version)
     TextView textView;
 
     @Override

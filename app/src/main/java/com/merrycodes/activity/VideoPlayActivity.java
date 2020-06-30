@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import static com.merrycodes.constant.AssetsConstant.POSITION;
 import static com.merrycodes.constant.AssetsConstant.VIDEO_PATH;
 
-public class VidePlayActivity extends AppCompatActivity {
+public class VideoPlayActivity extends AppCompatActivity {
 
     @BindView(R.id.video_view)
     VideoView videoView;
@@ -30,7 +30,7 @@ public class VidePlayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vide_play);
+        setContentView(R.layout.activity_video_play);
         ButterKnife.bind(this);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPath = getIntent().getStringExtra(VIDEO_PATH);

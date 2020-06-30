@@ -11,6 +11,10 @@ import com.merrycodes.enums.UserInfoEnum;
 import com.merrycodes.enums.VideoPlayListEnum;
 import com.merrycodes.sqlite.SQLiteHelper;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 
 /**
  * @author MerryCodes
@@ -101,5 +105,24 @@ public class DBUtil {
         }
         cursor.close();
         return hasVideo;
+    }
+
+    public List<VideoBean> getVideoHistory(String username) {
+
+        String sql = "SELECT * FROM " + SQLiteHelper.VIDEO_PLAY_LIST + " WHERE username = ?";
+        Cursor cursor = database.rawQuery(sql, new String[]{username});
+        List<VideoBean> videoBeans = new ArrayList<>();
+        VideoBean videoBean;
+        while (cursor.moveToNext()) {
+            videoBean = new VideoBean();
+            videoBean.setChapterId(cursor.getInt(cursor.getColumnIndex(VideoPlayListEnum.CHAPTER_ID.getValue())));
+            videoBean.setVideoId(cursor.getInt(cursor.getColumnIndex(VideoPlayListEnum.VIDEO_ID.getValue())));
+            videoBean.setVideoPath(cursor.getString(cursor.getColumnIndex(VideoPlayListEnum.VIDEO_PATH.getValue())));
+            videoBean.setTitle(cursor.getString(cursor.getColumnIndex(VideoPlayListEnum.TITLE.getValue())));
+            videoBean.setSecondTitle(cursor.getString(cursor.getColumnIndex(VideoPlayListEnum.SECONDE_TITLE.getValue())));
+            videoBeans.add(videoBean);
+        }
+        cursor.close();
+        return videoBeans;
     }
 }

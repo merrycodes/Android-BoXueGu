@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.merrycodes.R;
-import com.merrycodes.R2;
 import com.merrycodes.util.CommonUtil;
 import com.merrycodes.util.MD5Util;
 
@@ -22,22 +21,22 @@ import static com.merrycodes.constant.CommonConstant.LOGIN_INFO;
 
 public class ModifyPasswordActivity extends AppCompatActivity {
 
-    @BindView(R2.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
 
-    @BindView(R2.id.tv_main_title)
+    @BindView(R.id.tv_main_title)
     TextView tvMainTitle;
 
-    @BindView(R2.id.et_original_password)
+    @BindView(R.id.et_original_password)
     EditText etOriginalPassword;
 
-    @BindView(R2.id.et_new_password)
+    @BindView(R.id.et_new_password)
     EditText etNewPassword;
 
-    @BindView(R2.id.et_re_new_password)
+    @BindView(R.id.et_re_new_password)
     EditText etReNewPassword;
 
-    @BindView(R2.id.btn_save)
+    @BindView(R.id.btn_save)
     Button btnSave;
 
     private String userName;

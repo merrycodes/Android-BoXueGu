@@ -86,16 +86,16 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
             String videoPath = videoBean.getVideoPath();
             videoListAdapter.notifyDataSetChanged();
             if (TextUtils.isEmpty(videoPath)) {
-                Intent intent = new Intent(this, VidePlayActivity.class);
-                intent.putExtra(VIDEO_PATH, videoPath);
-                intent.putExtra(POSITION, position);
-                startActivityForResult(intent, 1);
+                CommonUtil.showToast(this, "本地没有此视频，暂无法播放");
             } else {
                 if (CommonUtil.readLoginStatus(this)) {
                     String username = CommonUtil.getUserName(this);
                     db.saveVideoPlayList(videoBean, username);
                 }
-                CommonUtil.showToast(this, "跳转到播放视频界面");
+                Intent intent = new Intent(this, VideoPlayActivity.class);
+                intent.putExtra(VIDEO_PATH, videoPath);
+                intent.putExtra(POSITION, position);
+                startActivityForResult(intent, 1);
             }
         });
         lvVideoList.setAdapter(videoListAdapter);
