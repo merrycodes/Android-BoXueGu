@@ -1,5 +1,6 @@
 package com.merrycodes.adapter;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -38,6 +39,7 @@ public class ADBannerAdapter extends FragmentStatePagerAdapter implements View.O
         notifyDataSetChanged();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         handler.removeMessages(CourseView.MESSAGE_ADBANNER_SLID);

@@ -30,7 +30,7 @@ public class CourseAdapter extends BaseAdapter {
 
     private final Context context;
 
-    List<List<CourseBean>> courseBeans;
+    private List<List<CourseBean>> courseBeans;
 
     public CourseAdapter(Context context) {
         this.context = context;
@@ -63,7 +63,7 @@ public class CourseAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.course_list_item, null);
             viewHolder = new ViewHolder(convertView);
-            convertView.setTag(convertView);
+            convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }

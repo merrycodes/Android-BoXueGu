@@ -50,8 +50,9 @@ public class VideoPlayActivity extends AppCompatActivity {
             return;
         }
         int videoResourcesId = getResources().getIdentifier(videoPath, "raw", getPackageName());
-        String url = "android.resource//" + getPackageName() + "/" + videoResourcesId;
+        String url = "android.resource://" + getPackageName() + "/" + videoResourcesId;
         videoView.setVideoPath(url);
+        videoView.start();
     }
 
     @Override

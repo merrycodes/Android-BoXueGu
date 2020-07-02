@@ -18,8 +18,6 @@ public class ViewPagerIndicator extends LinearLayout {
 
     private Context context;
 
-    private Integer currentIndex;
-
     private Integer count;
 
     public ViewPagerIndicator(Context context) {
@@ -37,9 +35,8 @@ public class ViewPagerIndicator extends LinearLayout {
     }
 
     public void setCurrentPosition(Integer currentIndex) {
-        this.currentIndex = currentIndex;
         removeAllViews();
-        Integer pex = 5;
+        int pex = 5;
         for (Integer i = 0; i < count; i++) {
             ImageView imageView = new ImageView(context);
             if (currentIndex.equals(i)) {

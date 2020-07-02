@@ -59,9 +59,7 @@ public class CourseView {
 
     private List<CourseBean> courseInfo;
 
-    List<List<CourseBean>> courseInfos;
-
-    private CourseAdapter courseAdapter;
+    private List<List<CourseBean>> courseInfos;
 
     private Handler handler;
 
@@ -86,7 +84,7 @@ public class CourseView {
     private void initView() {
         currentView = layoutInflater.inflate(R.layout.main_view_course, null);
         ButterKnife.bind(this, currentView);
-        courseAdapter = new CourseAdapter(fragmentActivity);
+        CourseAdapter courseAdapter = new CourseAdapter(fragmentActivity);
         courseAdapter.setData(courseInfos);
         lvCourseList.setAdapter(courseAdapter);
         vpADBanner.setLongClickable(false);
